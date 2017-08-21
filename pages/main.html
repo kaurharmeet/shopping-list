@@ -19,8 +19,7 @@
                        <li><a href="#">About</a></li>
                        <li><a href="#">Order Online</a></li>
                        <li><a href="#!/">Logout</a></li>
-                       <li><a href="#!/shoppinglist">shopping list</a></li>
-                  </ul>
+                                    </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -90,6 +89,7 @@
                     <div class="bestDish" ng-if="restaurant.bestDish">
                           <span>{{restaurant.bestDish.name}} </span>                            <!--ingredients of the best dish-->
                           <div ng-click="getIngredients(restaurant.bestDish.image)" class="button">Get Ingredients</div>
+                          <div ng-click="List" class="button">List</div>
                     </div>
 
                 </div>

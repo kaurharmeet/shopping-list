@@ -22,9 +22,9 @@ foodieApp.config(function ($routeProvider) {
 		templateUrl: 'pages/restaurant.html',					<!--restaurant page-->
 		controller: 'restaurantController'
 	})
-	.when('/shopping list',{
+	.when('/shoppinglist',{
 		templateUrl:'pages/shoppinglist.html', 					<!--grocerylist or items to be purchased  page-->
-		controller:'groceryListController'
+		controller:'todoController'
 	})
 	})
 
@@ -203,67 +203,68 @@ $scope.getIngredients = function(url) {
 })
 
 <!--telling the grocerylist using the home page-->
- foodieApp.controller('grocerylistController',function($scope , $location) {
- 	$scope.goToGroceryList = function() {
- 		//console.log('Do Something')
- 		$location.url('grocerylist')
- 	}
+  foodieApp.controller('todoController',function($scope , $location) {
+  	$scope.goToGroceryList = function() {
+  		//console.log('Do Something')
+  		$location.url('todo')
+  	}
+  })
+
+
+var list;
+ // Controller for todolist page
+ foodieApp.controller("todo", function($scope) {
+ 			$scope.list = list;
+ 			$scope.x=1;
+ 			console.log(list);
+ 			$scope.grocery = [];
+ 			//I need to create an array of object because we will need this for keeping track of which has been bought and which not
+ 			for (var i = 0; i <=20; i++) {
+ 				var a = {
+ 					id: i,
+ 					//name: list[i],
+ 					buy: false
+ 				};
+ 				$scope.grocery.push(a);
+ 			}
+ 			console.log($scope);
+ 			$scope.bought = [];
+ 			$scope.nbought = [];
+
+ 			$scope.toggle = function(num) {
+ 				// we need to change value dependin
+ 				$scope.grocery[num].buy = !$scope.grocery[num].buy;
+ 				$scope.$parent.grocery[num].buy = !$scope.$parent.grocery[num].buy
+
+ 			}
+ 			$scope.one =function(){
+
+ 				$scope.x=1;
+
+ 			}
+ 			$scope.two =function(){
+
+ 				$scope.x=2;
+
+ 			}
+ 			$scope.three =function(){
+
+ 				$scope.x=3;
+
+ 			}
+ 			$scope.filter = function() {
+ $scope.bought=[];
+ $scope.nbought=[];
+ 				for (var i = 0; i < $scope.grocery.length; i++) {
+ 					if ($scope.grocery[i].buy) {
+ 						$scope.bought.push($scope.grocery[i]);
+ 					} else {
+ 						$scope.nbought.push($scope.grocery[i]);
+ 					}
+ 				}
+
+ 				console.log($scope.bought);
+ 			}
+
+
  })
-
-
-
-	foodieApp.controller("grocerylistController", function($scope) {
-				$scope.list = list;
-				$scope.x=1;
-				console.log(list);
-				$scope.grocery = [];
-				//I need to create an array of object because we will need this for keeping track of which has been bought and which not
-				for (var i = 0; i < list.length; i++) {
-					var a = {
-						id: i,
-						name: list[i],
-						buy: false
-					};
-					$scope.grocery.push(a);
-				}
-				console.log($scope);
-				$scope.bought = [];
-				$scope.nbought = [];
-
-				$scope.toggle = function(num) {
-					// we need to change value dependin
-					$scope.grocery[num].buy = !$scope.grocery[num].buy;
-					$scope.$parent.grocery[num].buy = !$scope.$parent.grocery[num].buy
-
-				}
-				$scope.one =function(){
-
-					$scope.x=1;
-
-				}
-				$scope.two =function(){
-
-					$scope.x=2;
-
-				}
-				$scope.three =function(){
-
-					$scope.x=3;
-
-				}
-				$scope.filter = function() {
-	$scope.bought=[];
-	$scope.nbought=[];
-					for (var i = 0; i < $scope.grocery.length; i++) {
-						if ($scope.grocery[i].buy) {
-							$scope.bought.push($scope.grocery[i]);
-						} else {
-							$scope.nbought.push($scope.grocery[i]);
-						}
-					}
-
-					console.log($scope.bought);
-				}
-
-
-	})

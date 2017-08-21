@@ -38,11 +38,14 @@
             <div>{{restaurant.hours}}</div>
             <div class="bestDish" ng-if="restaurant.bestDish">
                   <span>{{restaurant.bestDish.name}} </span>                            <!--ingredients of the best dish-->
-                  <div ng-click="getIngredients(restaurant.bestDish.image)" class="button">Get Ingredients</div>
+                  <div  ng-click="getIngredients(restaurant.bestDish.image);toggle();" class="button">Get Ingredients</div>
+        <div  class="button" ng-init= "getIngredients(restaurant.bestDish.image)"><a href="#!/shoppinglist " ng-click="getIngredients(restaurant.bestDish.image)">List</a></div>
+       </div>
+   </div>
+   <div ng-if="ingredients && x==1">
             </div>
 
 
-    </div>      <!--end of rest-extra-->
 
       </div>
           <div class="rating">
